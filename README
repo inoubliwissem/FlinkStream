@@ -1,0 +1,55 @@
+program: straming with apache flink and apache kafka
+
+Prerequisites:
+=========================================
+java JDK +7
+apache flink
+apache kafka
+maven +2
+=========================================
+create our project with maven tool
+=========================================
+create project maven:
+mvn archetype:generate
+ -DgroupId=com.flink
+ -DartifactId=flink
+ -DarchetypeArtifactId=maven-archetype-quickstart
+ -DinteractiveMode=false
+build our project :
+  cd flink
+  mvn install
+============================================
+Steps to launch apache kafka
+============================================
+0: download apache kafka 
+   cd kafka repository 
+1:start  zookeeper and kafka service
+   bin/zookeeper-server-start.sh config/zookeeper.properties
+   bin/kafka-server-start.sh config/server.properties
+2: create a topic kafka 
+   bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic topic_name
+****** get list of topic kafka
+   bin/kafka-topics.sh --list --zookeeper localhost:2181
+*****send  msg to tpoc kafka
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
+   insert our message in cosole
+****read our msg with produce kafka
+bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic test --from-beginning
+    
+3: run our produce java kafka  
+============================================
+Steps to run flink project
+============================================
+1: entre to direcory when to palce your engine flink
+ cd flink-0.8
+2 : run a flink 
+./bin/start-local.sh
+3 : get s job started
+jps
+4: get link to desplay dashbord of flik 
+localhost:8081
+5: submit a job to cluster or local flink
+
+bin/flink run -c com.flink.Class /home/.../target/flink-bach-1.0-SNAPSHOT.jar
+
+
