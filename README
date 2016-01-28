@@ -50,6 +50,6 @@ jps
 localhost:8081
 5: submit a job to cluster or local flink
 
-bin/flink run -c com.flink.Class /home/.../target/flink-bach-1.0-SNAPSHOT.jar
+bin/flink run -c com.flink.Class /home/.../target/*.jar
 
 
